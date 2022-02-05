@@ -9,8 +9,8 @@ import UIKit
 
 class NoteViewController: UIViewController {
 
-	@IBOutlet weak var titleTextField: UILabel!
-	@IBOutlet weak var bodyTextField: UITextView!
+	@IBOutlet weak var titleTextField: UITextField!
+	@IBOutlet weak var bodyTextView: UITextView!
 	
 	var note: Note?
 	var notesModel: NotesModel?
@@ -25,7 +25,7 @@ class NoteViewController: UIViewController {
 		}
 		
 		titleTextField.text = note?.title
-		bodyTextField.text = note?.body
+		bodyTextView.text = note?.body
 	}
 	
 	
