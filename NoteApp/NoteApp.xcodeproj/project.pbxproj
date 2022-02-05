@@ -15,7 +15,7 @@
 		3436218A27AEF7D100C706F4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3436218827AEF7D100C706F4 /* LaunchScreen.storyboard */; };
 		3436219927AEF86500C706F4 /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436219827AEF86500C706F4 /* Note.swift */; };
 		3436219B27AEF8AC00C706F4 /* NotesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436219A27AEF8AC00C706F4 /* NotesModel.swift */; };
-		3436219D27AEFA8400C706F4 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436219C27AEFA8400C706F4 /* NotesViewController.swift */; };
+		3436219D27AEFA8400C706F4 /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436219C27AEFA8400C706F4 /* NoteViewController.swift */; };
 		3436219F27AEFBDA00C706F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3436219E27AEFBDA00C706F4 /* GoogleService-Info.plist */; };
 		343621A227AEFC4500C706F4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 343621A127AEFC4500C706F4 /* FirebaseFirestore */; };
 		3472EF0827AF184B00395535 /* NotesModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472EF0727AF184B00395535 /* NotesModelDelegate.swift */; };
@@ -32,7 +32,7 @@
 		3436218B27AEF7D100C706F4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3436219827AEF86500C706F4 /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		3436219A27AEF8AC00C706F4 /* NotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModel.swift; sourceTree = "<group>"; };
-		3436219C27AEFA8400C706F4 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		3436219C27AEFA8400C706F4 /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
 		3436219E27AEFBDA00C706F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3472EF0727AF184B00395535 /* NotesModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModelDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -93,7 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				3436218127AEF7D000C706F4 /* ViewController.swift */,
-				3436219C27AEFA8400C706F4 /* NotesViewController.swift */,
+				3436219C27AEFA8400C706F4 /* NoteViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,7 +213,7 @@
 				3472EF0827AF184B00395535 /* NotesModelDelegate.swift in Sources */,
 				3436218227AEF7D000C706F4 /* ViewController.swift in Sources */,
 				3436217E27AEF7D000C706F4 /* AppDelegate.swift in Sources */,
-				3436219D27AEFA8400C706F4 /* NotesViewController.swift in Sources */,
+				3436219D27AEFA8400C706F4 /* NoteViewController.swift in Sources */,
 				3436218027AEF7D000C706F4 /* SceneDelegate.swift in Sources */,
 				3436219927AEF86500C706F4 /* Note.swift in Sources */,
 				3436219B27AEF8AC00C706F4 /* NotesModel.swift in Sources */,

@@ -30,6 +30,22 @@ class ViewController: UIViewController {
 	}
 	
 	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
+		let notesVC = segue.destination as! NoteViewController
+		
+		// Verify that a user has selected a note
+		guard tableView.indexPathForSelectedRow != nil else  {
+			print("No row is current selected at")
+			return
+		}
+		
+		// Pass the note data for the tapped row to the NoteViewController
+		notesVC.note = notes[tableView.indexPathForSelectedRow!.row]
+		notesVC.notesModel = self.notesModel
+	}
+	
+	
 }
 
 	// MARK: - TableView DataSource Methods
