@@ -15,18 +15,17 @@ class ViewController: UIViewController {
 	private var notesModel = NotesModel()
 	private var notes = [Note]()
 	
-	
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
 		
-//		let db = Firestore.firestore()
-		
 		tableView.delegate = self
 		tableView.dataSource = self
 		
-		notesModel.getNotes()
+		// Set self as delegate for notesModel
+		notesModel.delegate = self
 		
+		notesModel.getNotes()
 		
 	}
 	
@@ -49,6 +48,12 @@ extension ViewController: UITableViewDataSource {
 		
 		let cell = tableView.dequeueReusableCell(withIdentifier: "NoteCell", for: indexPath)
 		
+		let titleLabel = cell.viewWithTag(1) as? UILabel
+		titleLabel?.text = notes[indexPath.row].title
+		
+		let bodyLabel = cell.viewWithTag(2) as? UILabel
+		bodyLabel?.text = notes[indexPath.row].body
+		
 		return cell
 		
 	}
@@ -68,6 +73,24 @@ extension ViewController: UITableViewDelegate {
 	
 }
 
+// MARK: - NotesModel Delegate Methods
 
+extension ViewController: NotesModelDelegate {
+
+
+	func notesRetrieved(notes: [Note]) {
+		
+		// Set notes property and refresh tableView
+		self.notes = notes
+		
+		// Refresh the table
+		tableView.reloadData()
+		
+	}
+	
+	
+	
+	
+}
 
 

@@ -18,6 +18,7 @@
 		3436219D27AEFA8400C706F4 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3436219C27AEFA8400C706F4 /* NotesViewController.swift */; };
 		3436219F27AEFBDA00C706F4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3436219E27AEFBDA00C706F4 /* GoogleService-Info.plist */; };
 		343621A227AEFC4500C706F4 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 343621A127AEFC4500C706F4 /* FirebaseFirestore */; };
+		3472EF0827AF184B00395535 /* NotesModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3472EF0727AF184B00395535 /* NotesModelDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		3436219A27AEF8AC00C706F4 /* NotesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModel.swift; sourceTree = "<group>"; };
 		3436219C27AEFA8400C706F4 /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		3436219E27AEFBDA00C706F4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3472EF0727AF184B00395535 /* NotesModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesModelDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 		3436217C27AEF7D000C706F4 /* NoteApp */ = {
 			isa = PBXGroup;
 			children = (
+				3472EF0627AF183400395535 /* Protocols */,
 				3436219527AEF83200C706F4 /* Models */,
 				3436219427AEF81600C706F4 /* Views */,
 				3436219227AEF7FF00C706F4 /* Controllers */,
@@ -119,6 +122,14 @@
 				3436219A27AEF8AC00C706F4 /* NotesModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3472EF0627AF183400395535 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3472EF0727AF184B00395535 /* NotesModelDelegate.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3472EF0827AF184B00395535 /* NotesModelDelegate.swift in Sources */,
 				3436218227AEF7D000C706F4 /* ViewController.swift in Sources */,
 				3436217E27AEF7D000C706F4 /* AppDelegate.swift in Sources */,
 				3436219D27AEFA8400C706F4 /* NotesViewController.swift in Sources */,
