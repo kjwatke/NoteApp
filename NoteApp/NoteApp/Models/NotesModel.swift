@@ -54,6 +54,37 @@ class NotesModel {
 				}
 				
 			}
+		
+	}
+	
+	func convertNoteToDict(_ note: Note) -> [String:Any] {
+		
+		var dict = [String:Any]()
+		
+		dict["docID"] = note.docID
+		dict["title"] = note.title
+		dict["body"] = note.body
+		dict["createdAt"] = note.createdAt
+		dict["lastUpdatedAt"] = note.lastUpdatedAt
+		dict["isStarred"] = note.isStarred
+		
+		return dict
+	}
+	
+	
+	func deleteNote(_ note: Note) {
+		
+		let db = Firestore.firestore()
+		
+		db.collection("Notes").document(note.docID).delete()
+	}
+	
+	
+	func saveNote(_ note: Note) {
+		
+		let db = Firestore.firestore()
+		
+		db.collection("Notes").document(note.docID).setData(convertNoteToDict(note))
 	}
 	
 }
