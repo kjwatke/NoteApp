@@ -69,7 +69,13 @@
                             <constraint firstAttribute="trailing" secondItem="WK1-yv-e0E" secondAttribute="trailing" id="qJI-Yo-C7U"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Fha-Sh-nmZ"/>
+                    <navigationItem key="navigationItem" id="Fha-Sh-nmZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="lmQ-f6-ESB">
+                            <connections>
+                                <segue destination="iJg-IP-fvd" kind="presentation" id="7sC-dw-4l4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="WK1-yv-e0E" id="hUw-fj-bwm"/>
                     </connections>
@@ -173,6 +179,9 @@
             <point key="canvasLocation" x="900" y="412"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="08E-fe-Btg"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

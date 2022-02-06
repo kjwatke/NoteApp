@@ -1,14 +1,14 @@
-//
-//  NotesViewController.swift
-//  NoteApp
-//
-//  Created by Kevin  Watke on 2/5/22.
-//
+	//
+	//  NotesViewController.swift
+	//  NoteApp
+	//
+	//  Created by Kevin  Watke on 2/5/22.
+	//
 
 import UIKit
 
 class NoteViewController: UIViewController {
-
+	
 	@IBOutlet weak var titleTextField: UITextField!
 	@IBOutlet weak var bodyTextView: UITextView!
 	
@@ -27,52 +27,59 @@ class NoteViewController: UIViewController {
 		titleTextField.text = note?.title
 		bodyTextView.text = note?.body
 	}
-
+	
+	
+	override func viewDidDisappear(_ animated: Bool) {
+		
+		super.viewDidDisappear(animated)
+		
+		note = nil
+		titleTextField.text = ""
+		bodyTextView.text = ""
+		
+	}
 	
 	@IBAction func deleteTapped(_ sender: Any) {
 		
-		guard self.note != nil else {
-			return
+		if note != nil {
+			
+			notesModel?.deleteNote(note!)
+			
 		}
 		
-		
+		dismiss(animated: true, completion: nil)
 	}
 	
 	
 	@IBAction func saveTapped(_ sender: Any) {
 		
-		guard self.note == nil else {
+		if note == nil {
+			
+			// Brand new note
+			let n = Note(
+				docID: UUID().uuidString,
+				title: titleTextField.text ?? "",
+				body: bodyTextView.text ?? "",
+				isStarred: false,
+				createdAt: Date(),
+				lastUpdatedAt: Date()
+			)
+			
+			note = n
+		}
+		else {
 			
 			// Update to existing note
-			self.note?.title = titleTextField.text ?? ""
-			self.note?.body = bodyTextView.text ?? ""
-			self.note?.lastUpdatedAt = Date()
-			
-			self.notesModel?.saveNote(self.note!)
-			
-			dismiss(animated: true, completion: nil)
-			
-			return
+			note?.title = titleTextField.text ?? ""
+			note?.body = bodyTextView.text ?? ""
+			note?.lastUpdatedAt = Date()
+
 		}
 		
-		// Brand new note
-		let n = Note(
-			docID: UUID().uuidString,
-			title: titleTextField.text ?? "",
-			body: bodyTextView.text ?? "",
-			isStarred: false,
-			createdAt: Date(),
-			lastUpdatedAt: Date()
-		)
-		
-		self.notesModel?.saveNote(n)
+		notesModel?.saveNote(note!)
 		
 		dismiss(animated: true, completion: nil)
 		
 	}
 	
-	
-	
-	
-
 }

@@ -34,15 +34,19 @@ class ViewController: UIViewController {
 		
 		let notesVC = segue.destination as! NoteViewController
 		
-		// Verify that a user has selected a note
-		guard tableView.indexPathForSelectedRow != nil else  {
-			print("No row is current selected at")
-			return
+		// If the user has selected a row, transition to note vc
+		if tableView.indexPathForSelectedRow != nil {
+			
+			// Set the note and notes model properties of the note vc
+			notesVC.note = notes[tableView.indexPathForSelectedRow!.row]
+			
+			// Deselect the selected row so that it doesn't interfere with new note creation
+			tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: false)
 		}
 		
-		// Pass the note data for the tapped row to the NoteViewController
-		notesVC.note = notes[tableView.indexPathForSelectedRow!.row]
-		notesVC.notesModel = self.notesModel
+		// Whether its a new note or a selected note, we still want to pass through the notes model
+		notesVC.notesModel = notesModel
+		
 	}
 	
 	

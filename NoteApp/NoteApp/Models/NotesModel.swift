@@ -11,15 +11,27 @@ import Firebase
 class NotesModel {
 	
 	var delegate: NotesModelDelegate?
+	var listener: ListenerRegistration?
+	
+	
+	deinit {
+		
+		// Unregister database listener
+		listener?.remove()
+	}
+	
 	
 	func getNotes() {
 		
 		// Get a reference to the db
 		let db = Firestore.firestore()
 		
+		
+		
 		// Get all the notes
-		db.collection("Notes")
-			.getDocuments { snapshot, error in
+		listener = db
+			.collection("Notes")
+			.addSnapshotListener() { snapshot, error in
 				
 				// Check for errors
 				guard error == nil && snapshot != nil else  {
