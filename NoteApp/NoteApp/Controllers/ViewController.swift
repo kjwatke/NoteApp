@@ -11,7 +11,9 @@ import Firebase
 class ViewController: UIViewController {
 	
 	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var starButton: UIBarButtonItem!
 	
+	private var isStarFiltered = false
 	private var notesModel = NotesModel()
 	private var notes = [Note]()
 	
@@ -25,7 +27,10 @@ class ViewController: UIViewController {
 		// Set self as delegate for notesModel
 		notesModel.delegate = self
 		
-		notesModel.getNotes()
+		setStarFilterButton()
+		
+		// Retrieve all notes according to the filter status
+		isStarFiltered ? notesModel.getNotes(true) : notesModel.getNotes()
 		
 	}
 	
@@ -47,6 +52,28 @@ class ViewController: UIViewController {
 		// Whether its a new note or a selected note, we still want to pass through the notes model
 		notesVC.notesModel = notesModel
 		
+	}
+	
+	
+	func setStarFilterButton() {
+		
+		// Set the status of the star filter button
+		let imageName = isStarFiltered ? "star.fill" : "star"
+		starButton.image = UIImage(systemName: imageName)
+		
+	}
+	
+	
+	@IBAction func starFilterTapped(_ sender: Any) {
+		
+		// Toggle the star filter status
+		isStarFiltered.toggle()
+		
+		// Run the query
+		isStarFiltered ? notesModel.getNotes(true) : notesModel.getNotes()
+		
+		// Update the star button
+		setStarFilterButton()
 	}
 	
 	

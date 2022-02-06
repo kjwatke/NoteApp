@@ -11,6 +11,7 @@ class NoteViewController: UIViewController {
 	
 	@IBOutlet weak var titleTextField: UITextField!
 	@IBOutlet weak var bodyTextView: UITextView!
+	@IBOutlet weak var starButton: UIButton!
 	
 	var note: Note?
 	var notesModel: NotesModel?
@@ -19,13 +20,31 @@ class NoteViewController: UIViewController {
 		
 		super.viewDidLoad()
 		
-		guard note != nil else {
-			print("no notes available")
-			return
+		if note != nil {
+			
+			// User is viewing an existing note, so populate the fields
+			titleTextField.text = note?.title
+			bodyTextView.text = note?.body
+			
+			// Set the status of the star button
+			setStarButtonImage()
 		}
-		
-		titleTextField.text = note?.title
-		bodyTextView.text = note?.body
+		else {
+			// Note property is nil, so create a new note
+			
+			// Create the note
+			let n = Note(
+				docID: UUID().uuidString,
+				title: titleTextField.text ?? "",
+				body: bodyTextView.text ?? "",
+				isStarred: false,
+				createdAt: Date(),
+				lastUpdatedAt: Date()
+			)
+			
+			note = n
+			
+		}
 	}
 	
 	
@@ -38,6 +57,16 @@ class NoteViewController: UIViewController {
 		bodyTextView.text = ""
 		
 	}
+	
+	
+	func setStarButtonImage() {
+	
+			// Set the status of the star button
+		let imageName = note!.isStarred ? "star.fill" : "star"
+		starButton.setImage(UIImage(systemName: imageName), for: .normal)
+		
+	}
+	
 	
 	@IBAction func deleteTapped(_ sender: Any) {
 		
@@ -53,33 +82,28 @@ class NoteViewController: UIViewController {
 	
 	@IBAction func saveTapped(_ sender: Any) {
 		
-		if note == nil {
-			
-			// Brand new note
-			let n = Note(
-				docID: UUID().uuidString,
-				title: titleTextField.text ?? "",
-				body: bodyTextView.text ?? "",
-				isStarred: false,
-				createdAt: Date(),
-				lastUpdatedAt: Date()
-			)
-			
-			note = n
-		}
-		else {
-			
-			// Update to existing note
-			note?.title = titleTextField.text ?? ""
-			note?.body = bodyTextView.text ?? ""
-			note?.lastUpdatedAt = Date()
-
-		}
+		// Update to existing note
+		note?.title = titleTextField.text ?? ""
+		note?.body = bodyTextView.text ?? ""
+		note?.lastUpdatedAt = Date()
 		
+		// Send it to the notes model
 		notesModel?.saveNote(note!)
 		
 		dismiss(animated: true, completion: nil)
 		
+	}
+	
+	@IBAction func starTapped(_ sender: Any) {
+		
+		// Change the property in the note
+		note?.isStarred.toggle()
+		
+		// Update the database
+		notesModel?.updateFavStatus(note!.docID, note!.isStarred)
+		
+		// Update the button
+		setStarButtonImage()
 	}
 	
 }

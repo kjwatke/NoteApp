@@ -21,17 +21,23 @@ class NotesModel {
 	}
 	
 	
-	func getNotes() {
+	func getNotes(_ starredOnly: Bool = false) {
+		
+		// Detach any listener
+		listener?.remove()
 		
 		// Get a reference to the db
 		let db = Firestore.firestore()
 		
+		var query: Query = db.collection("Notes")
 		
+		// If we're only looking for starred notes, update the query
+		if starredOnly {
+			query = query.whereField("isStarred", isEqualTo: true)
+		}
 		
 		// Get all the notes
-		listener = db
-			.collection("Notes")
-			.addSnapshotListener() { snapshot, error in
+		listener = query.addSnapshotListener() { snapshot, error in
 				
 				// Check for errors
 				guard error == nil && snapshot != nil else  {
@@ -97,6 +103,15 @@ class NotesModel {
 		let db = Firestore.firestore()
 		
 		db.collection("Notes").document(note.docID).setData(convertNoteToDict(note))
+	}
+	
+	func updateFavStatus(_ docID: String, _ isStarred: Bool) {
+		
+		let db = Firestore.firestore()
+		
+		db.collection("Notes")
+			.document(docID)
+			.updateData(["isStarred":isStarred])
 	}
 	
 }

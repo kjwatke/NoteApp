@@ -70,6 +70,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Fha-Sh-nmZ">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="star" catalog="system" id="WNS-fa-NqZ" userLabel="Star Filter Button">
+                            <connections>
+                                <action selector="starFilterTapped:" destination="BYZ-38-t0r" id="ZP4-Mg-Md1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="lmQ-f6-ESB">
                             <connections>
                                 <segue destination="iJg-IP-fvd" kind="presentation" id="7sC-dw-4l4"/>
@@ -77,6 +82,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="starButton" destination="WNS-fa-NqZ" id="2Wm-I5-bXg"/>
                         <outlet property="tableView" destination="WK1-yv-e0E" id="hUw-fj-bwm"/>
                     </connections>
                 </viewController>
@@ -114,7 +120,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="FbV-uM-nPI">
                                         <rect key="frame" x="0.0" y="668" width="374" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VL4-m4-C9x">
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VL4-m4-C9x">
                                                 <rect key="frame" x="0.0" y="0.0" width="45" height="40"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" title="Delete"/>
@@ -123,7 +129,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z4H-Up-dkX">
-                                                <rect key="frame" x="76" y="0.0" width="298" height="40"/>
+                                                <rect key="frame" x="76" y="0.0" width="220" height="40"/>
                                                 <color key="backgroundColor" systemColor="linkColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="I32-Kb-aWc"/>
@@ -135,6 +141,14 @@
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="saveTapped:" destination="iJg-IP-fvd" eventType="touchUpInside" id="M4q-ub-3yO"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-ae-7J3" userLabel="Star Button">
+                                                <rect key="frame" x="327" y="0.0" width="47" height="40"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
+                                                <connections>
+                                                    <action selector="starTapped:" destination="iJg-IP-fvd" eventType="touchUpInside" id="kdF-Gn-anq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -153,6 +167,7 @@
                     </view>
                     <connections>
                         <outlet property="bodyTextView" destination="7p8-44-5LB" id="qNW-Pc-la9"/>
+                        <outlet property="starButton" destination="jKh-ae-7J3" id="5c0-E0-omZ"/>
                         <outlet property="titleTextField" destination="PpR-Yk-lKi" id="LZv-to-b7Z"/>
                     </connections>
                 </viewController>
@@ -183,6 +198,7 @@
         <segue reference="08E-fe-Btg"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
